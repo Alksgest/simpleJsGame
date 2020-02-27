@@ -1,4 +1,4 @@
-export { Vec } from "./Vec.js";
+export { Vector } from "./Vector.js";
 export { State } from './State.js'
 export { Coin } from "./Coin.js";
 export { Lava } from "./Lava.js";

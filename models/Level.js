@@ -1,4 +1,4 @@
-import { Coin, Lava, Player, Vec } from './models.export.js';
+import { Coin, Lava, Player, Vector } from './models.export.js';
 
 const levelChars = {
     '.': 'empty',
@@ -22,7 +22,7 @@ export class Level {
             return row.map((ch, x) => {
                 let type = levelChars[ch];
                 if (typeof type === 'string') return type;
-                this.startActors.push(type.create(new Vec(x, y), ch));
+                this.startActors.push(type.create(new Vector(x, y), ch));
                 return 'empty';
             });
         })
