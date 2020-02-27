@@ -1,5 +1,5 @@
-const { Vec } = require("./Vec");
-class Coin {
+import { Vec } from './models.export.js';
+export class Coin {
     constructor(pos, basePos, wobble) {
         this.pos = pos;
         this.basePos = basePos;
@@ -15,4 +15,3 @@ class Coin {
 
 Coin.prototype.size = new Vec(0.6, 0.6);
 
-exports.Coin = Coin;

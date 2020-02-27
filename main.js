@@ -1,5 +1,5 @@
-const { plans } = require('./plan/levels-plans');
-const { Level } = require('./models/models.export');
+import { plans } from './plan/levels-plans.js';
+import { Level } from './models/models.export.js';
 
 const level = new Level(plans.simpleLevelPlan);
 

@@ -1,5 +1,5 @@
-const { Vec } = require("./Vec");
-class Lava {
+import { Vec } from './models.export.js';
+export class Lava {
     constructor(pos, speed, reset) {
         this.pos = pos;
         this.speed = speed;
@@ -17,5 +17,3 @@ class Lava {
 }
 
 Lava.prototype.size = new Vec(1, 1);
-
-exports.Lava = Lava;

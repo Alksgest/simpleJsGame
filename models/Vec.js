@@ -1,4 +1,4 @@
-class Vec {
+export class Vec {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -10,4 +10,3 @@ class Vec {
         return new Vec(this.x * factor, this.y * factor);
     }
 }
-exports.Vec = Vec;

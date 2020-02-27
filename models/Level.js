@@ -1,12 +1,4 @@
-const { Coin, Lava, Player, Vec } = require('./models.export');
-const s = require('./models.export');
-
-// const { Coin } = require("./Coin");
-// const { Lava } = require("./Lava");
-// const { Player } = require("./Player");
-// const { Vec } = require("./Vec");
-
-console.log(Coin);
+import { Coin, Lava, Player, Vec } from './models.export.js';
 
 const levelChars = {
     '.': 'empty',
@@ -19,7 +11,7 @@ const levelChars = {
     'v': Lava
 }
 
-class Level {
+export class Level {
     constructor(plan) {
         let rows = plan.split('\n').map(l => [...l.trim()]);
         this.height = rows.length;
@@ -36,5 +28,3 @@ class Level {
         })
     }
 }
-
-exports.Level = Level;

@@ -1,5 +1,5 @@
-const { Vec } = require("./Vec");
-class Player {
+import { Vec } from './models.export.js';
+export class Player {
     constructor(pos, speed) {
         this.pos = pos;
         this.speed = speed;
@@ -12,4 +12,3 @@ class Player {
 
 Player.prototype.size = new Vec(0.8, 1.5);
 
-exports.Player = Player;
