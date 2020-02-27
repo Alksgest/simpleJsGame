@@ -1,4 +1,4 @@
-import { plans } from './plan/levels-plans.js';
+import { plans } from '../plan/levels-plans.js';
 import { DOMDisplay } from './drowing/drowing.js';
 import { Level, State } from './models/models.export.js';
 

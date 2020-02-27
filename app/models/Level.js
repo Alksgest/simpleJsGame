@@ -1,4 +1,4 @@
-import { Coin, Lava, Player, Vector } from './models.export.js';
+import { Coin, Lava, Player, Vector } from './models.export.js.js';
 
 const levelChars = {
     '.': 'empty',

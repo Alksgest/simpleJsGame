@@ -1,0 +1,21 @@
+{
+    "appFolder": "app",
+    "jsMainFile": "main.js",
+    "jsFiles": [
+        "plan/levels-plans.js",
+        "models/Vector.js",
+        "models/Coin.js",
+        "models/Lava.js",
+        "models/Player.js",
+        "models/State.js",
+        "models/Level.js",
+        "drowing/drowing.js",
+        "main.js"
+    ],
+    "htmlFiles": [
+        "index.html"
+    ],
+    "cssFiles": [
+        "styles.css"
+    ]
+}

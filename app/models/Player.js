@@ -1,4 +1,4 @@
-import { Vector } from './models.export.js';
+import { Vector } from './models.export.js.js';
 
 export class Player {
     constructor(pos, speed) {
