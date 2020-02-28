@@ -12,6 +12,10 @@ import * as fs from 'fs';
 
 const buildSettingsFileName = 'build-settings.json';
 
+
+/*
+    @ load settings from build-settings.json
+*/
 function loadSettings() {
 
     const str = readFileToString(buildSettingsFileName);
@@ -55,7 +59,7 @@ function writeString(fileName, str) {
 
 function mergeJsFiles(appFolder, files) {
     let merged = '';
-    const importReg = /(import)[^;]+;/gi;
+    const importReg = /(import)[^;]+(;|'|")/gi;
     const exportReg = /export/g;
     files.map(f => appFolder + '/' + f).forEach(file => {
         const str = readFileToString(file);
@@ -69,9 +73,20 @@ function mergeJsFiles(appFolder, files) {
     return merged;
 }
 
+function copyHtmlCss(settings) {
+    const html = settings.htmlFiles[0];
+    const css = settings.cssFiles[0];
+
+    const distFolder = settings.distFolder + '/';
+    const appFolder = settings.appFolder + '/';
+
+    fs.copyFileSync(appFolder + html, distFolder + html);
+    fs.copyFileSync(appFolder + css, distFolder + css);
+}
+
 function main() {
     const settings = loadSettings();
-    
+
     createDistFolder(settings);
 
     const merged = mergeJsFiles(settings.appFolder, settings.jsFiles);
@@ -79,6 +94,7 @@ function main() {
     const distMainJs = settings.distFolder + '/' + settings.jsMainFile;
 
     writeString(distMainJs, merged);
+    copyHtmlCss(settings);
 }
 
 main();

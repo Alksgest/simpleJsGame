@@ -1,10 +1,10 @@
-.backgorund {
+.background {
     background: rgb(52, 166, 251);
     table-layout: fixed;
     border-spacing: 0;
 }
 
-.backgorund td {
+.background td {
     padding: 0;
 }
 
