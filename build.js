@@ -63,7 +63,7 @@ function mergeJsFiles(appFolder, files) {
     const exportReg = /export/g;
     files.map(f => appFolder + '/' + f).forEach(file => {
         const str = readFileToString(file);
-        const match = importReg.exec(str);
+        // const match = importReg.exec(str); // for testing purpose
         const importFree = str.replace(importReg, '');
         const exportFree = importFree.replace(exportReg, '');
 
