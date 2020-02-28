@@ -53,7 +53,9 @@ function createDistFolder(settings) {
 
 function writeString(fileName, str) {
     fs.writeFile(fileName, str, (err) => {
-        console.log(err);
+        if (err) {
+            console.log(err);
+        }
     })
 }
 
@@ -62,12 +64,14 @@ function mergeJsFiles(appFolder, files) {
     const importReg = /(import)[^;]+(;|'|")/gi;
     const exportReg = /export/g;
     files.map(f => appFolder + '/' + f).forEach(file => {
-        const str = readFileToString(file);
-        // const match = importReg.exec(str); // for testing purpose
-        const importFree = str.replace(importReg, '');
-        const exportFree = importFree.replace(exportReg, '');
+        if (fs.existsSync(file)) {
+            const str = readFileToString(file);
+            // const match = importReg.exec(str); // for testing purpose
+            const importFree = str.replace(importReg, '');
+            const exportFree = importFree.replace(exportReg, '');
 
-        merged += exportFree;
+            merged += exportFree;
+        }
     });
 
     return merged;
@@ -80,8 +84,12 @@ function copyHtmlCss(settings) {
     const distFolder = settings.distFolder + '/';
     const appFolder = settings.appFolder + '/';
 
-    fs.copyFileSync(appFolder + html, distFolder + html);
-    fs.copyFileSync(appFolder + css, distFolder + css);
+    if (fs.existsSync(appFolder + html)) {
+        fs.copyFileSync(appFolder + html, distFolder + html);
+    }
+    if (fs.existsSync(appFolder + css)) {
+        fs.copyFileSync(appFolder + css, distFolder + css);
+    }
 }
 
 function main() {

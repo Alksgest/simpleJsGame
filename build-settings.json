@@ -1,9 +1,10 @@
 {
-    "appFolder": "app",
+    "appFolder": "compiled",
     "distFolder": "dist",
     "jsMainFile": "main.js",
     "jsFiles": [
         "plan/levels-plans.js",
+        "models/Actor.js",
         "models/Vector.js",
         "models/Coin.js",
         "models/Lava.js",

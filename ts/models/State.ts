@@ -9,6 +9,6 @@ export class State {
     }
 
     get player() {
-        return this.actors.find(a => a.type === 'player');
+        return this.actors.filter(a => a.type === 'player')[0];
     }
 }
