@@ -27,7 +27,7 @@ function drawGrid(level) {
     return createDOMElement('table', {
         class: 'background',
         style: `width: ${level.width * scale}px`
-    }, ...level.rows.map(row => createDOMElement('tr', { style: `heaight: ${scale}px` },
+    }, ...level.rows.map(row => createDOMElement('tr', { style: `height: ${scale}px` },
         ...row.map(type => createDOMElement('td', { class: type })))));
 }
 
@@ -51,8 +51,8 @@ DOMDisplay.prototype.syncState = function (state) {
 }
 
 DOMDisplay.prototype.scrollPlayerIntoView = function (state) {
-    let width = this.dom.clientWidth;
-    let height = this.dom.clientHeight;
+    let width = this.element.clientWidth;
+    let height = this.element.clientHeight;
     let margin = width / 3;
 
     let left = this.element.scrollLeft;

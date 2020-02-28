@@ -1,5 +1,6 @@
 {
     "appFolder": "app",
+    "distFolder": "dist",
     "jsMainFile": "main.js",
     "jsFiles": [
         "plan/levels-plans.js",

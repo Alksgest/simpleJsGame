@@ -1,4 +1,4 @@
-const plans = {
+ const plans = {
     simpleLevelPlan: 
     `........................
     ..#.................#...
@@ -10,9 +10,7 @@ const plans = {
     ......###############..
     .......................`
 }
-
-
-class Vector {
+ class Vector {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -28,13 +26,14 @@ class Vector {
 
 }
 
-class Coin {
+
+ class Coin {
     constructor(pos, basePos, wobble) {
         this.pos = pos;
         this.basePos = basePos;
         this.wobble = wobble;
     }
-
+    
     get type() { return 'coin'; }
 
     static create(pos) {
@@ -44,9 +43,11 @@ class Coin {
 
 }
 
-    Coin.prototype.size = new Vector(0.6, 0.6);
+Coin.prototype.size = new Vector(0.6, 0.6);
 
-class Lava {
+
+
+ class Lava {
     constructor(pos, speed, reset) {
         this.pos = pos;
         this.speed = speed;
@@ -65,9 +66,10 @@ class Lava {
     }
 }
 
-    Lava.prototype.size = new Vector(1, 1);
+Lava.prototype.size = new Vector(1, 1);
 
-class Player {
+
+ class Player {
     constructor(pos, speed) {
         this.pos = pos;
         this.speed = speed;
@@ -80,7 +82,23 @@ class Player {
     }
 }
 
-    Player.prototype.size = new Vector(0.8, 1.5);
+Player.prototype.size = new Vector(0.8, 1.5);
+ class State {
+    constructor(level, actors, status) {
+        this.level = level;
+        this.actors = actors;
+        this.status = status;
+    }
+    
+    static start(level) {
+        return new State(level, level.startActors, 'playing');
+    }
+
+    get player() {
+        return this.actors.find(a => a.type === 'player');
+    }
+}
+
 
 const levelChars = {
     '.': 'empty',
@@ -93,10 +111,9 @@ const levelChars = {
     'v': Lava
 }
 
-class Level {
+ class Level {
     constructor(plan) {
         let rows = plan.split('\n').map(l => [...l.trim()]);
-        console.log(rows);
         this.height = rows.length;
         this.width = rows[0].length;
         this.startActors = [];
@@ -111,22 +128,7 @@ class Level {
         })
     }
 }
-
-class State {
-    constructor(level, actors, status) {
-        this.level = level;
-        this.actors = actors;
-        this.status = status;
-    }
-    static start(level) {
-        return new State(level, level.startActors, 'playing');
-    }
-    get player() {
-        return this.actors.find(a => a.type === 'player');
-    }
-}
-
-class DOMDisplay {
+ class DOMDisplay {
     constructor(parent, level) {
         this.element = createDOMElement('div', { class: 'game' }, drawGrid(level));
         this.actorLayer = undefined;
@@ -204,6 +206,7 @@ DOMDisplay.prototype.scrollPlayerIntoView = function (state) {
         this.element.scrollTop = center.y + margin - height;
     }
 }
+
 
 
 const level = new Level(plans.simpleLevelPlan);
