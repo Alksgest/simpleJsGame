@@ -1,4 +1,5 @@
-import * as fs from 'fs';
+// import * as fs from 'fs';
+const fs = require('fs');
 
 // fs.readFile('filename', function(err, data));
 // fs.appendFile('filename', 'data', function(err))
@@ -43,7 +44,6 @@ function createDistFolder(settings) {
             if (!fs.existsSync(settings.distFolder)) {
                 fs.mkdirSync(settings.distFolder);
             } else {
-                console.log(`Directory ${settings.distFolder} already exists.`);
                 // removeFilesFromDistDirectory();
             }
 
@@ -78,7 +78,7 @@ function mergeJsFiles(appFolder, files) {
 }
 
 function copyHtmlCss(settings) {
-    const html = settings.htmlFiles[0];
+    const html = settings.htmlDistFile;
     const css = settings.cssFiles[0];
 
     const distFolder = settings.distFolder + '/';
@@ -92,17 +92,42 @@ function copyHtmlCss(settings) {
     }
 }
 
-function main() {
+function buildProject() {
     const settings = loadSettings();
 
     createDistFolder(settings);
 
     const merged = mergeJsFiles(settings.appFolder, settings.jsFiles);
 
-    const distMainJs = settings.distFolder + '/' + settings.jsMainFile;
+    const distJs = settings.distFolder + '/' + settings.jsDistFile;
 
-    writeString(distMainJs, merged);
+    writeString(distJs, merged);
     copyHtmlCss(settings);
+}
+
+function startProject() {
+    const settings = loadSettings();
+    const fileName = __dirname + '/' + settings.distFolder + '/' + settings.htmlDistFile;
+
+    const childeProcess = require('child_process');
+
+    try {
+        childeProcess.spawn('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', [fileName]);
+    } catch (err) {
+        console.log(`Path to file ${fileName}`);
+        console.log(err);
+    }
+}
+
+function main() {
+    const args = process.argv.slice(2);
+    buildProject();
+    if (args.includes('--build')) {
+        buildProject();
+    }
+    if (args.includes('--start')) {
+        startProject();
+    }
 }
 
 main();

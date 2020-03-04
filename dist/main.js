@@ -123,6 +123,10 @@ const levelChars = {
         this.element.remove();
     }
 }
+/* attrs : {
+    key: string : value: string
+}
+*/
 function createDOMElement(name, attrs, ...children) {
     let element = document.createElement(name);
     for (const attr of Object.keys(attrs)) {

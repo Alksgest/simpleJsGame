@@ -7,6 +7,8 @@
     "dependencies": {},
     "type": "module",
     "scripts": {
-        "build": "node build.js"
+        "start": "node build.js --start",
+        "build": "tsc && node build.js --build",
+        "rbuild": "tsc && node build.js --build --start"
     }
 }

@@ -17,7 +17,11 @@ export class DOMDisplay {
     }
 }
 
-function createDOMElement(name: string, attrs, ...children: HTMLElement[]): HTMLElement {
+/* attrs : {
+    key: string : value: string
+}
+*/
+function createDOMElement(name: string, attrs: {}, ...children: HTMLElement[]): HTMLElement {
     let element = document.createElement(name);
     for (const attr of Object.keys(attrs)) {
         element.setAttribute(attr, attrs[attr]);

@@ -1,7 +1,8 @@
 {
     "appFolder": "compiled",
     "distFolder": "dist",
-    "jsMainFile": "main.js",
+    "jsDistFile": "main.js",
+    "htmlDistFile": "index.html",
     "jsFiles": [
         "plan/levels-plans.js",
         "models/Actor.js",
