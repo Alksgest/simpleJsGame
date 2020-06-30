@@ -5,3 +5,5 @@ import { plans } from './plan/levels-plans';
 const level = new Level(plans.simpleLevelPlan);
 const display = new DOMDisplay(document.body, level);
 display['syncState'](State.start(level));
+
+
